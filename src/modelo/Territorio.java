@@ -16,6 +16,14 @@ public class Territorio {
     private List<Aereo> exercitoAereo;
     
     private Continente continente;
+    
+    public Territorio (){
+    }
+    
+    public Territorio(String nome, Continente continente){
+        this.nome = nome;
+        this.continente = continente;
+    }
 
     public String getNome() {
         return nome;
