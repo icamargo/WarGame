@@ -18,6 +18,7 @@ public class ControleJogo {
 
     public void inicializacaoJogo() {
         controleTerritorio.defineFronteiras();
+        controleTerritorio.criaListaTerritorios();
     }
     
     public void distribuiTerritorios(){
@@ -26,7 +27,7 @@ public class ControleJogo {
         
         for (Territorio territorio : todosTerritorios){
             if (!(controleJogador.comparaQtdTerritorios() > 1)) {
-                retornoRandom = (aleatorio.nextInt(2)+1);
+                retornoRandom = (aleatorio.nextInt(2));
                 switch (retornoRandom) {
                     case 0:
                         computador.getTerritorios().add(territorio);
@@ -38,11 +39,16 @@ public class ControleJogo {
             }
             else{
                 jogadorAux = controleJogador.menorQtdTerritorios();
-                jogadorAux.getTerritorios().add(territorio);
+                switch (jogadorAux.getId()) {
+                    case 0:
+                        computador.getTerritorios().add(territorio);
+                        break;
+                    case 1:
+                        jogador.getTerritorios().add(territorio);
+                        break;
+                }
             }
-            
         }
-            
     }
-        
+    
 }

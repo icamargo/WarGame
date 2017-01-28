@@ -1,8 +1,8 @@
 package wargame;
 
+import controle.ControleJogo;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import modelo.Continente;
 import modelo.Jogador;
 import modelo.Territorio;
@@ -52,7 +52,7 @@ public class WarGame {
     public static List<Territorio> todosTerritorios = new ArrayList<Territorio>();
     
     public static void main(String[] args) {
-        // TODO code application logic here
+        ControleJogo controleJogo = new ControleJogo();
         
     }
     

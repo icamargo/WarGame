@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class Jogador {
     
     public Jogador(int id){
         this.id = id;
+        this.territorios = new ArrayList <Territorio>();
     }
 
     public int getId() {

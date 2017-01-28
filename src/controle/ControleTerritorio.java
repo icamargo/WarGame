@@ -36,8 +36,6 @@ import static wargame.WarGame.vladivostok;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Territorio;
-import static wargame.WarGame.computador;
-import static wargame.WarGame.jogador;
 import static wargame.WarGame.todosTerritorios;
 
 /**

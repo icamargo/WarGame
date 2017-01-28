@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Territorio {
     private String nome;
-    private String cor;
+    private Cor cor;
     
     private List<Territorio> fronteiras;
     
@@ -31,14 +31,6 @@ public class Territorio {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public void setCor(String cor) {
-        this.cor = cor;
     }
 
     public List<Territorio> getFronteiras() {
@@ -71,5 +63,13 @@ public class Territorio {
 
     public void setContinente(Continente continente) {
         this.continente = continente;
+    }
+
+    public Cor getCor() {
+        return cor;
+    }
+
+    public void setCor(Cor cor) {
+        this.cor = cor;
     }
 }
