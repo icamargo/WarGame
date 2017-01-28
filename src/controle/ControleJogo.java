@@ -27,12 +27,14 @@ public class ControleJogo {
         
         for (Territorio territorio : todosTerritorios){
             if (!(controleJogador.comparaQtdTerritorios() > 1)) {
-                retornoRandom = (aleatorio.nextInt(2));
+                retornoRandom = (aleatorio.nextInt(2));// 0 = Computador - 1 = Jogador
                 switch (retornoRandom) {
                     case 0:
+                        territorio.setCor(computador.getCor());
                         computador.getTerritorios().add(territorio);
                         break;
                     case 1:
+                        territorio.setCor(jogador.getCor());
                         jogador.getTerritorios().add(territorio);
                         break;
                 }
@@ -41,9 +43,11 @@ public class ControleJogo {
                 jogadorAux = controleJogador.menorQtdTerritorios();
                 switch (jogadorAux.getId()) {
                     case 0:
+                        territorio.setCor(computador.getCor());
                         computador.getTerritorios().add(territorio);
                         break;
                     case 1:
+                        territorio.setCor(jogador.getCor());
                         jogador.getTerritorios().add(territorio);
                         break;
                 }

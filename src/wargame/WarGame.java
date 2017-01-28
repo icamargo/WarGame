@@ -1,11 +1,16 @@
 package wargame;
 
+import teste.ClasseTeste;
+import controle.ControleJogador;
 import controle.ControleJogo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import modelo.Continente;
+import modelo.Cor;
 import modelo.Jogador;
 import modelo.Territorio;
+import visao.InterfacePrincipal;
 
 /**
  *
@@ -46,14 +51,37 @@ public class WarGame {
     public static Territorio japao = new Territorio("Japão", Continente.ASIA);
     public static Territorio novaGuine = new Territorio("Nova Guiné", Continente.OCEANIA);
     
-    public static Jogador computador = new Jogador(0);
+    public static Jogador computador = new Jogador(0, "Computador");
     public static Jogador jogador = new Jogador(1);
     
     public static List<Territorio> todosTerritorios = new ArrayList<Territorio>();
     
     public static void main(String[] args) {
         ControleJogo controleJogo = new ControleJogo();
+        ControleJogador controleJogador = new ControleJogador();
+        InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
+        Scanner leitura = new Scanner(System.in);
+        int corEscolhida;
         
+        interfacePrincipal.titulo();
+        jogador.setNome(leitura.next());
+        System.out.println("Ok " +jogador.getNome()+ ", agora escolha sua cor: \n(1) Azul.\n(2) Vermelho.");
+        corEscolhida = leitura.nextInt();
+        
+        while(!((corEscolhida == 1) || (corEscolhida == 2))){
+            System.out.println("Opção inválida, escolha novamente!");
+            corEscolhida = leitura.nextInt();
+        }
+            
+        controleJogador.informaCor(corEscolhida);
+        System.out.println("Ok "+jogador.getNome()+", Seus exércitos serão da cor " + jogador.getCor());
+        
+        controleJogo.inicializacaoJogo();
+        controleJogo.distribuiTerritorios();
+        
+        ClasseTeste teste = new ClasseTeste();
+        teste.Teste();
+            
     }
     
 }
