@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class Territorio {
     public Territorio(String nome, Continente continente){
         this.nome = nome;
         this.continente = continente;
+        this.exercitosAereo = new ArrayList<>();
+        this.exercitosTerrestre = new ArrayList<>();
     }
 
     public String getNome() {
