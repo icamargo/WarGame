@@ -12,8 +12,8 @@ public class Territorio {
     
     private List<Territorio> fronteiras;
     
-    private List<Terrestre> exercitosTerrestres;
-    private List<Aereo> exercitoAereo;
+    private List<Terrestre> exercitosTerrestre;
+    private List<Aereo> exercitosAereo;
     
     private Continente continente;
     
@@ -49,20 +49,20 @@ public class Territorio {
         this.fronteiras = fronteiras;
     }
 
-    public List<Terrestre> getExercitosTerrestres() {
-        return exercitosTerrestres;
+    public List<Terrestre> getExercitosTerrestre() {
+        return exercitosTerrestre;
     }
 
-    public void setExercitosTerrestres(List<Terrestre> exercitosTerrestres) {
-        this.exercitosTerrestres = exercitosTerrestres;
+    public void setExercitosTerrestre(List<Terrestre> exercitosTerrestre) {
+        this.exercitosTerrestre = exercitosTerrestre;
     }
 
-    public List<Aereo> getExercitoAereo() {
-        return exercitoAereo;
+    public List<Aereo> getExercitosAereo() {
+        return exercitosAereo;
     }
 
-    public void setExercitoAereo(List<Aereo> exercitoAereo) {
-        this.exercitoAereo = exercitoAereo;
+    public void setExercitosAereo(List<Aereo> exercitosAereo) {
+        this.exercitosAereo = exercitosAereo;
     }
 
     public Continente getContinente() {

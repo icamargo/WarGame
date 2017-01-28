@@ -1,6 +1,10 @@
 package wargame;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import modelo.Continente;
+import modelo.Jogador;
 import modelo.Territorio;
 
 /**
@@ -41,6 +45,11 @@ public class WarGame {
     public static Territorio china = new Territorio("China", Continente.ASIA);
     public static Territorio japao = new Territorio("Japão", Continente.ASIA);
     public static Territorio novaGuine = new Territorio("Nova Guiné", Continente.OCEANIA);
+    
+    public static Jogador computador = new Jogador(0);
+    public static Jogador jogador = new Jogador(1);
+    
+    public static List<Territorio> todosTerritorios = new ArrayList<Territorio>();
     
     public static void main(String[] args) {
         // TODO code application logic here
