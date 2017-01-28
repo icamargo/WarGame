@@ -1,7 +1,10 @@
 package controle;
 
+import modelo.Aereo;
 import modelo.Cor;
 import modelo.Jogador;
+import modelo.Terrestre;
+import modelo.Territorio;
 import static wargame.WarGame.computador;
 import static wargame.WarGame.jogador;
 
@@ -36,7 +39,23 @@ public class ControleJogador {
             computador.setCor(Cor.AZUL);
         }
     }
-        
+    
+    public void atualizaJogador(int jogadorSorteado, Territorio territorio) {
+        switch (jogadorSorteado) {// 0 = Computador - 1 = Jogador
+            case 0:
+                territorio.setCor(computador.getCor());
+                territorio.getExercitosAereo().add(new Aereo());
+                territorio.getExercitosTerrestre().add(new Terrestre());
+                computador.getTerritorios().add(territorio);
+                break;
+            case 1:
+                territorio.setCor(jogador.getCor());
+                territorio.getExercitosAereo().add(new Aereo());
+                territorio.getExercitosTerrestre().add(new Terrestre());
+                jogador.getTerritorios().add(territorio);
+                break;
+        }
+    }
 
     
 }
