@@ -8,7 +8,6 @@ import visao.InterfacePrincipal;
 import static wargame.WarGame.computador;
 import static wargame.WarGame.jogador;
 import static wargame.WarGame.todosTerritorios;
-
 /**
  *
  * @author Igor
