@@ -10,7 +10,8 @@ import java.util.List;
 public class Jogador {
     private String nome;
     private int id;
-    private int exercitosDisponiveis;
+    private int exercitosTerrestreDisponiveis;
+    private int exercitosAereoDisponiveis;
     private Cor cor;
     
     private List territorios;
@@ -33,12 +34,12 @@ public class Jogador {
         this.id = id;
     }
 
-    public int getExercitosDisponiveis() {
-        return exercitosDisponiveis;
+    public int getExercitosTerrestreDisponiveis() {
+        return exercitosTerrestreDisponiveis;
     }
 
-    public void setExercitosDisponiveis(int exercitosDisponiveis) {
-        this.exercitosDisponiveis = exercitosDisponiveis;
+    public void setExercitosTerrestreDisponiveis(int exercitosTerrestreDisponiveis) {
+        this.exercitosTerrestreDisponiveis = exercitosTerrestreDisponiveis;
     }
 
     public Cor getCor() {
@@ -63,5 +64,13 @@ public class Jogador {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public int getExercitosAereoDisponiveis() {
+        return exercitosAereoDisponiveis;
+    }
+
+    public void setExercitosAereoDisponiveis(int exercitosAereoDisponiveis) {
+        this.exercitosAereoDisponiveis = exercitosAereoDisponiveis;
     }
 }

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import modelo.Continente;
-import modelo.Cor;
 import modelo.Jogador;
 import modelo.Territorio;
 import visao.InterfacePrincipal;
@@ -17,39 +16,39 @@ import visao.InterfacePrincipal;
  * @author Igor
  */
 public class WarGame {
-    public static Territorio alasca = new Territorio("Alasca", Continente.AMERICA_DO_NORTE);
-    public static Territorio chile = new Territorio("Chile", Continente.AMERICA_DO_SUL);
-    public static Territorio argentina = new Territorio("Argentina", Continente.AMERICA_DO_SUL);
-    public static Territorio vancouver = new Territorio("Vancouver", Continente.AMERICA_DO_NORTE);
-    public static Territorio california = new Territorio("Califórnia", Continente.AMERICA_DO_NORTE);
-    public static Territorio mexico = new Territorio("México", Continente.AMERICA_DO_NORTE);
-    public static Territorio colombia = new Territorio("Colômbia", Continente.AMERICA_DO_SUL);
-    public static Territorio brasil = new Territorio("Brasil", Continente.AMERICA_DO_SUL);
-    public static Territorio groelandia = new Territorio("Groelândia", Continente.AMERICA_DO_NORTE);
-    public static Territorio otawa = new Territorio("Otawa", Continente.AMERICA_DO_NORTE);
-    public static Territorio novaYork = new Territorio("Nova York", Continente.AMERICA_DO_NORTE);
-    public static Territorio inglaterra = new Territorio("Inglaterra", Continente.EUROPA);
-    public static Territorio nigeria = new Territorio("Nigéria", Continente.AFRICA);
-    public static Territorio congo = new Territorio("Congo", Continente.AFRICA);
-    public static Territorio africaDoSul = new Territorio("África do Sul", Continente.AFRICA);
-    public static Territorio italia = new Territorio("Itália", Continente.EUROPA);
-    public static Territorio alemanha = new Territorio("Alemanha", Continente.EUROPA);
-    public static Territorio egito = new Territorio("Egito", Continente.AFRICA);
-    public static Territorio sudao = new Territorio("Sudão", Continente.AFRICA);
-    public static Territorio madagascar = new Territorio("Madagascar", Continente.AFRICA);
-    public static Territorio suecia = new Territorio("Suécia", Continente.EUROPA);
-    public static Territorio moscou = new Territorio("Moscou", Continente.EUROPA);
-    public static Territorio orienteMedio = new Territorio("Oriente Médio", Continente.ASIA);
-    public static Territorio sumatra = new Territorio("Sumatra", Continente.OCEANIA);
-    public static Territorio omsk = new Territorio("Omsk", Continente.ASIA);
-    public static Territorio india = new Territorio("Índia", Continente.ASIA);
-    public static Territorio borneu = new Territorio("Bornéu", Continente.OCEANIA);
-    public static Territorio australia = new Territorio("Austrália", Continente.OCEANIA);
-    public static Territorio vladivostok = new Territorio("Vladivostok", Continente.ASIA);
-    public static Territorio siberia = new Territorio("Sibéria", Continente.ASIA);
-    public static Territorio china = new Territorio("China", Continente.ASIA);
-    public static Territorio japao = new Territorio("Japão", Continente.ASIA);
-    public static Territorio novaGuine = new Territorio("Nova Guiné", Continente.OCEANIA);
+    public static Territorio alasca = new Territorio("Alasca", Continente.AMERICA_DO_NORTE, 1.1);
+    public static Territorio chile = new Territorio("Chile", Continente.AMERICA_DO_SUL, 4.1);
+    public static Territorio argentina = new Territorio("Argentina", Continente.AMERICA_DO_SUL, 5.1);
+    public static Territorio vancouver = new Territorio("Vancouver", Continente.AMERICA_DO_NORTE, 1.2);
+    public static Territorio california = new Territorio("Califórnia", Continente.AMERICA_DO_NORTE, 2.2);
+    public static Territorio mexico = new Territorio("México", Continente.AMERICA_DO_NORTE, 3.2);
+    public static Territorio colombia = new Territorio("Colômbia", Continente.AMERICA_DO_SUL, 4.2);
+    public static Territorio brasil = new Territorio("Brasil", Continente.AMERICA_DO_SUL, 5.2);
+    public static Territorio groelandia = new Territorio("Groelândia", Continente.AMERICA_DO_NORTE, 1.3);
+    public static Territorio otawa = new Territorio("Otawa", Continente.AMERICA_DO_NORTE, 2.3);
+    public static Territorio novaYork = new Territorio("Nova York", Continente.AMERICA_DO_NORTE, 3.3);
+    public static Territorio inglaterra = new Territorio("Inglaterra", Continente.EUROPA, 1.4);
+    public static Territorio nigeria = new Territorio("Nigéria", Continente.AFRICA, 3.4);
+    public static Territorio congo = new Territorio("Congo", Continente.AFRICA, 4.4);
+    public static Territorio africaDoSul = new Territorio("África do Sul", Continente.AFRICA, 5.4);
+    public static Territorio italia = new Territorio("Itália", Continente.EUROPA, 1.5);
+    public static Territorio alemanha = new Territorio("Alemanha", Continente.EUROPA, 2.5);
+    public static Territorio egito = new Territorio("Egito", Continente.AFRICA, 3.5);
+    public static Territorio sudao = new Territorio("Sudão", Continente.AFRICA, 4.5);
+    public static Territorio madagascar = new Territorio("Madagascar", Continente.AFRICA, 5.5);
+    public static Territorio suecia = new Territorio("Suécia", Continente.EUROPA, 1.6);
+    public static Territorio moscou = new Territorio("Moscou", Continente.EUROPA, 2.6);
+    public static Territorio orienteMedio = new Territorio("Oriente Médio", Continente.ASIA, 3.6);
+    public static Territorio sumatra = new Territorio("Sumatra", Continente.OCEANIA, 4.6);
+    public static Territorio omsk = new Territorio("Omsk", Continente.ASIA, 2.7);
+    public static Territorio india = new Territorio("Índia", Continente.ASIA, 3.7);
+    public static Territorio borneu = new Territorio("Bornéu", Continente.OCEANIA, 4.7);
+    public static Territorio australia = new Territorio("Austrália", Continente.OCEANIA, 5.7);
+    public static Territorio vladivostok = new Territorio("Vladivostok", Continente.ASIA, 1.8);
+    public static Territorio siberia = new Territorio("Sibéria", Continente.ASIA, 2.8);
+    public static Territorio china = new Territorio("China", Continente.ASIA, 3.8);
+    public static Territorio japao = new Territorio("Japão", Continente.ASIA, 4.8);
+    public static Territorio novaGuine = new Territorio("Nova Guiné", Continente.OCEANIA, 5.8);
     
     public static Jogador computador = new Jogador(0, "Computador");
     public static Jogador jogador = new Jogador(1);
@@ -74,13 +73,21 @@ public class WarGame {
         }
             
         controleJogador.informaCor(corEscolhida);
-        System.out.println("Ok "+jogador.getNome()+", Seus exércitos serão da cor " + jogador.getCor());
+        System.out.println("Ok "+jogador.getNome()+", Seus exércitos serão da cor " + jogador.getCor() + ".");
+        System.out.println("Tecle enter para continuar...");
+        leitura.nextLine();
+        leitura.nextLine();
         
         controleJogo.inicializacaoJogo();
         controleJogo.distribuiTerritorios();
         
-        ClasseTeste teste = new ClasseTeste();
-        teste.Teste();
+        System.out.println("Ok "+jogador.getNome()+", vamos começar o jogo!\nSeu objetivo é conquistar totalmente dois continentes quaisquer.\nVamos lá!");
+        System.out.println("Tecle enter para iniciar o jogo...");
+        leitura.nextLine();
+        
+        controleJogo.fasePreparacao();
+        //ClasseTeste teste = new ClasseTeste();
+        //teste.Teste();
             
     }
     

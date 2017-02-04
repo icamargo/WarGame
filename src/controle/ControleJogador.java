@@ -1,5 +1,7 @@
 package controle;
 
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Aereo;
 import modelo.Cor;
 import modelo.Jogador;
@@ -29,6 +31,7 @@ public class ControleJogador {
         }
             
     }
+    
     public void informaCor(int escolhaJogador){//(1) Azul (2) Vermelho.
         if(escolhaJogador == 1){
             jogador.setCor(Cor.AZUL);
@@ -54,6 +57,42 @@ public class ControleJogador {
                 territorio.getExercitosTerrestre().add(new Terrestre());
                 jogador.getTerritorios().add(territorio);
                 break;
+        }
+    }
+    
+    public void listaTerritoriosJogador(Jogador jogador){
+        List<Territorio> territoriosJogador = jogador.getTerritorios();
+        
+        System.out.println(jogador.getNome()+", você possui os seguintes territórios: \n");
+        for (Territorio territorio : territoriosJogador){
+            System.out.println(territorio.getNome()+", que posui " + territorio.getExercitosTerrestre().size()+" exércitos terrestre e "+ territorio.getExercitosAereo().size() + " exércitos aéreo.");
+        }
+        System.out.println();
+    }
+    
+    public boolean verificaTerritorioJogador(Jogador jogador, double coordTerritorio){
+        boolean pertence = true;
+        List<Territorio> territoriosJogador = jogador.getTerritorios();
+        
+        for(Territorio territorio : territoriosJogador){
+            if(territorio.getCoordenada() == coordTerritorio){
+                pertence = true;
+                break;
+            }
+            else {
+                pertence = false;
+            }
+        }
+        
+        return pertence;
+    }
+    
+    public boolean verificaExercitoDisponivel(Jogador jogador){
+        if((jogador.getExercitosTerrestreDisponiveis() != 0) || (jogador.getExercitosAereoDisponiveis() != 0)){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 

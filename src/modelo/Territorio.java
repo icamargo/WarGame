@@ -18,14 +18,17 @@ public class Territorio {
     
     private Continente continente;
     
+    private double coordenada;//ij onde i=linha j=coluna Exemplo: 11 significa linha 1 coluna 1 - 21 significa linha 2 coluna 1
+    
     public Territorio (){
     }
     
-    public Territorio(String nome, Continente continente){
+    public Territorio(String nome, Continente continente, double coordenada){
         this.nome = nome;
         this.continente = continente;
         this.exercitosAereo = new ArrayList<>();
         this.exercitosTerrestre = new ArrayList<>();
+        this.coordenada = coordenada;
     }
 
     public String getNome() {
@@ -74,5 +77,13 @@ public class Territorio {
 
     public void setCor(Cor cor) {
         this.cor = cor;
+    }
+
+    public double getCoordenada() {
+        return coordenada;
+    }
+
+    public void setCoordenada(double coordenada) {
+        this.coordenada = coordenada;
     }
 }
