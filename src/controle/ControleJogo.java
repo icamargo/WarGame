@@ -5,9 +5,9 @@ import java.util.Scanner;
 import modelo.Jogador;
 import modelo.Territorio;
 import visao.InterfacePrincipal;
-import static wargame.WarGame.computador;
-import static wargame.WarGame.jogador;
 import static wargame.WarGame.todosTerritorios;
+import static wargame.WarGame.jogador1;
+import static wargame.WarGame.jogador2;
 /**
  *
  * @author Igor
@@ -31,7 +31,7 @@ public class ControleJogo {
         
         for (Territorio territorio : todosTerritorios){
             if (!(controleJogador.comparaQtdTerritorios() > 1)) {
-                retornoRandom = (aleatorio.nextInt(2));
+                retornoRandom = (aleatorio.nextInt(2)+1);
                 controleJogador.atualizaJogador(retornoRandom, territorio);
             }
             else{
@@ -41,56 +41,51 @@ public class ControleJogo {
         }
     }
     
-    public void fasePreparacao() {
+    public void fasePreparacao(Jogador jogador) {
         double territorioEscolhido;
         int exercitoEscolhido;
-        boolean escolheuTerritorioCerto = false;
+        boolean escolheuTerritorioCerto = true;
         char adicionarExercito = 'S';
 
-        this.inicioFasePreparacao();
+        this.inicioFasePreparacao(jogador);
 
         if (controleJogador.verificaExercitoDisponivel(jogador)) {
             System.out.println("Deseja escolher um território e adicionar exército a ele?\n(S) Sim\n(N) Não");
             adicionarExercito = leitura.next().charAt(0);
 
-            while (adicionarExercito == 'S') {
-                while (!(escolheuTerritorioCerto)) {
-                    System.out.println("Digite a coordenada i,j(onde i = linha e j = coluna) do território que deseja fortificar: (Por exemplo, para escolher o Alasca digite 1,1, Otawa 2,3)");
-                    territorioEscolhido = leitura.nextDouble();
+            while ((escolheuTerritorioCerto) && (adicionarExercito == 'S')) {
+                System.out.println("Digite a coordenada i,j(onde i = linha e j = coluna) do território que deseja fortificar: (Por exemplo, para escolher o Alasca digite 1,1, Otawa 2,3)");
+                territorioEscolhido = leitura.nextDouble();
 
-                    if (controleJogador.verificaTerritorioJogador(jogador, territorioEscolhido)) {
-                        System.out.println("Escolha qual exército deseja fortificar:\n(1) Terrestre.\n(2) Aéreo.");
-                        exercitoEscolhido = leitura.nextInt();
+                if (controleJogador.verificaTerritorioJogador(jogador, territorioEscolhido)) {
+                    System.out.println("Escolha qual exército deseja fortificar:\n(1) Terrestre.\n(2) Aéreo.");
+                    exercitoEscolhido = leitura.nextInt();
 
-                        controleExercito.fortificaExercito(jogador, territorioEscolhido, exercitoEscolhido);
-                        escolheuTerritorioCerto = true;
-                    } else {
-                        System.out.println("Território inválido escolhido (Coordenadas incorretas informadas ou territorio não pertence a você.)! Digite novamente!\n");
-                        System.out.println("Tecle enter para continuar...");
-                        leitura.nextLine();
-                        leitura.nextLine();
-                        escolheuTerritorioCerto = false;
-                    }
-                    controleJogador.listaTerritoriosJogador(jogador);
+                    controleExercito.fortificaExercito(jogador, territorioEscolhido, exercitoEscolhido);
+                    escolheuTerritorioCerto = true;
+                } else {
+                    System.out.println("Território inválido escolhido (Coordenadas incorretas informadas ou territorio não pertence a você.)! Digite novamente!\n");
+                    System.out.println("Tecle enter para continuar...");
+                    leitura.nextLine();
+                    escolheuTerritorioCerto = false;
+                }
+                controleJogador.listaTerritoriosJogador(jogador);
 
-                    System.out.println("Você possui " + jogador.getExercitosTerrestreDisponiveis() + " exércitos terrestres e " + jogador.getExercitosAereoDisponiveis() + " exércitos aéreos disponíveis, por possuir " + jogador.getTerritorios().size() + " territórios.\n");
+                System.out.println("Você possui " + jogador.getExercitosTerrestreDisponiveis() + " exércitos terrestres e " + jogador.getExercitosAereoDisponiveis() + " exércitos aéreos disponíveis, por possuir " + jogador.getTerritorios().size() + " territórios.\n");
 
-                    if (controleJogador.verificaExercitoDisponivel(jogador)) {
-                        System.out.println("Você ainda possui exercitos disponíveis. Deseja continuar adicionando aos seus territórios?\n(S) Sim.\n(N) Não.");
-                        adicionarExercito = leitura.next().charAt(0);
-                        escolheuTerritorioCerto = false;
-                    } else {
-                        System.out.println("Você distribuiu todos seus exércitos");
-                        adicionarExercito = 'N';
-                    }
+                if (controleJogador.verificaExercitoDisponivel(jogador)) {
+                    System.out.println("Você ainda possui exercitos disponíveis. Deseja continuar adicionando aos seus territórios?\n(S) Sim.\n(N) Não.");
+                    adicionarExercito = leitura.next().charAt(0);
+                } else {
+                    System.out.println(jogador.getNome() + ", você distribuiu todos seus exércitos!\n");
+                    adicionarExercito = 'N';
                 }
             }
         }
     }
     
-    private void inicioFasePreparacao(){
+    private void inicioFasePreparacao(Jogador jogador){
         controleExercito.atualizaExercitosDisponiveis(jogador);
-        controleExercito.atualizaExercitosDisponiveis(computador);
         
         System.out.println(jogador.getNome() +" essa é a fase de preparação, nela você poderá fortificar seus territórios com os exércitos, aéreos e terrestres, que você tem disponíveis.");
         System.out.println("Tecle enter para continuar...");

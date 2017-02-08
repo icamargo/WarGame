@@ -20,11 +20,6 @@ public class Jogador {
         this.id = id;
         this.territorios = new ArrayList <Territorio>();
     }
-    public Jogador(int id, String nome){
-        this.id = id;
-        this.nome = nome;
-        this.territorios = new ArrayList <Territorio>();
-    }
 
     public int getId() {
         return id;

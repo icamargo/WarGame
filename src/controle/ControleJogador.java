@@ -2,13 +2,14 @@ package controle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import modelo.Aereo;
 import modelo.Cor;
 import modelo.Jogador;
 import modelo.Terrestre;
 import modelo.Territorio;
-import static wargame.WarGame.computador;
-import static wargame.WarGame.jogador;
+import static wargame.WarGame.jogador1;
+import static wargame.WarGame.jogador2;
 
 /**
  *
@@ -16,46 +17,75 @@ import static wargame.WarGame.jogador;
  */
 public class ControleJogador {
     
+    public void inicializaJogadores(){
+        Scanner leitura = new Scanner(System.in);
+        int corEscolhida;
+        
+        System.out.println("Jogador 1, por favor, digite seu nome:");
+        jogador1.setNome(leitura.next());
+        System.out.println("\nOk " +jogador1.getNome()+ ", agora escolha sua cor: \n(1) Azul.\n(2) Vermelho.");
+        corEscolhida = leitura.nextInt();
+        
+        while(!((corEscolhida == 1) || (corEscolhida == 2))){
+            System.out.println("Opção inválida, escolha novamente!");
+            corEscolhida = leitura.nextInt();
+        }
+            
+        this.informaCor(corEscolhida);
+        System.out.println("\nOk "+jogador1.getNome()+", Seus exércitos serão da cor " + jogador1.getCor() + ".");
+        System.out.println("Tecle enter para continuar...");
+        leitura.nextLine();
+        leitura.nextLine();
+        
+        System.out.println("Jogador 2, por favor digite seu nome: ");
+        jogador2.setNome(leitura.next());
+        System.out.println("\nOk " +jogador2.getNome()+ ", sua cor é " +jogador2.getCor()+ " e essa será a cor de seus exércitos.\n");
+        System.out.println("Tecle enter para continuar...");
+        leitura.nextLine();
+        leitura.nextLine();
+    }
+        
+    
     public int comparaQtdTerritorios(){
-        int diferenca = Math.abs(jogador.getTerritorios().size() - computador.getTerritorios().size());
+        int diferenca = Math.abs(jogador2.getTerritorios().size() - jogador1.getTerritorios().size());
         return diferenca;
     }
     
     public Jogador menorQtdTerritorios(){
-        int menor = jogador.getTerritorios().size();
-        if(menor < computador.getTerritorios().size()){
-            return jogador;
+        int menor = jogador2.getTerritorios().size();
+        if(menor < jogador1.getTerritorios().size()){
+            return jogador2;
         }
         else{
-            return computador;
+            return jogador1;
         }
             
     }
     
     public void informaCor(int escolhaJogador){//(1) Azul (2) Vermelho.
         if(escolhaJogador == 1){
-            jogador.setCor(Cor.AZUL);
-            computador.setCor(Cor.VERMELHO);
+            jogador1.setCor(Cor.AZUL);
+            jogador2.setCor(Cor.VERMELHO);
         }
         else{
-            jogador.setCor(Cor.VERMELHO);
-            computador.setCor(Cor.AZUL);
+            jogador1.setCor(Cor.VERMELHO);
+            jogador2.setCor(Cor.AZUL);
         }
     }
     
     public void atualizaJogador(int jogadorSorteado, Territorio territorio) {
-        switch (jogadorSorteado) {// 0 = Computador - 1 = Jogador
-            case 0:
-                territorio.setCor(computador.getCor());
-                territorio.getExercitosAereo().add(new Aereo());
-                territorio.getExercitosTerrestre().add(new Terrestre());
-                computador.getTerritorios().add(territorio);
-                break;
+        switch (jogadorSorteado) {// 1 = Jogador1 - 2 = Jogador 2
             case 1:
-                territorio.setCor(jogador.getCor());
+                territorio.setCor(jogador1.getCor());
                 territorio.getExercitosAereo().add(new Aereo());
                 territorio.getExercitosTerrestre().add(new Terrestre());
-                jogador.getTerritorios().add(territorio);
+                jogador1.getTerritorios().add(territorio);
+                break;
+            case 2:
+                territorio.setCor(jogador2.getCor());
+                territorio.getExercitosAereo().add(new Aereo());
+                territorio.getExercitosTerrestre().add(new Terrestre());
+                jogador2.getTerritorios().add(territorio);
                 break;
         }
     }

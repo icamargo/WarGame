@@ -50,8 +50,8 @@ public class WarGame {
     public static Territorio japao = new Territorio("Japão", Continente.ASIA, 4.8);
     public static Territorio novaGuine = new Territorio("Nova Guiné", Continente.OCEANIA, 5.8);
     
-    public static Jogador computador = new Jogador(0, "Computador");
-    public static Jogador jogador = new Jogador(1);
+    public static Jogador jogador1 = new Jogador(1);
+    public static Jogador jogador2 = new Jogador(2);
     
     public static List<Territorio> todosTerritorios = new ArrayList<Territorio>();
     
@@ -60,35 +60,22 @@ public class WarGame {
         ControleJogador controleJogador = new ControleJogador();
         InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
         Scanner leitura = new Scanner(System.in);
-        int corEscolhida;
         
         interfacePrincipal.titulo();
-        jogador.setNome(leitura.next());
-        System.out.println("Ok " +jogador.getNome()+ ", agora escolha sua cor: \n(1) Azul.\n(2) Vermelho.");
-        corEscolhida = leitura.nextInt();
-        
-        while(!((corEscolhida == 1) || (corEscolhida == 2))){
-            System.out.println("Opção inválida, escolha novamente!");
-            corEscolhida = leitura.nextInt();
-        }
-            
-        controleJogador.informaCor(corEscolhida);
-        System.out.println("Ok "+jogador.getNome()+", Seus exércitos serão da cor " + jogador.getCor() + ".");
-        System.out.println("Tecle enter para continuar...");
-        leitura.nextLine();
-        leitura.nextLine();
-        
+        controleJogador.inicializaJogadores();
         controleJogo.inicializacaoJogo();
         controleJogo.distribuiTerritorios();
         
-        System.out.println("Ok "+jogador.getNome()+", vamos começar o jogo!\nSeu objetivo é conquistar totalmente dois continentes quaisquer.\nVamos lá!");
+        System.out.println("Ok jogadores, vamos começar o jogo!\nGanha o jogo quem conquistar totalmente dois continentes quaisquer.\nVamos lá!");
         System.out.println("Tecle enter para iniciar o jogo...");
         leitura.nextLine();
         
-        controleJogo.fasePreparacao();
-        //ClasseTeste teste = new ClasseTeste();
-        //teste.Teste();
-            
+        System.out.println(jogador1.getNome()+ ", sua vez de jogar. Tecle enter para iniciar a jogada...");
+        leitura.nextLine();
+        controleJogo.fasePreparacao(jogador1);
+        System.out.println("\n"+jogador2.getNome()+ ", sua vez de jogar. Tecle enter para iniciar a jogada...");
+        leitura.nextLine();
+        controleJogo.fasePreparacao(jogador2);
     }
     
 }
