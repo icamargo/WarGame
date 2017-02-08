@@ -25,6 +25,19 @@ public class ControleJogo {
         controleTerritorio.criaListaTerritorios();
     }
     
+    public void faseInicializacao(){
+        System.out.println("Ok jogadores, vamos começar o jogo!\nGanha o jogo quem conquistar totalmente dois continentes quaisquer.\nVamos lá!");
+        System.out.println("Tecle enter para iniciar o jogo...");
+        leitura.nextLine();
+        
+        System.out.println(jogador1.getNome()+ ", sua vez de jogar. Tecle enter para iniciar a jogada...");
+        leitura.nextLine();
+        this.fasePreparacao(jogador1);
+        System.out.println("\n"+jogador2.getNome()+ ", sua vez de jogar. Tecle enter para iniciar a jogada...");
+        leitura.nextLine();
+        this.fasePreparacao(jogador2);
+    }
+    
     public void distribuiTerritorios(){
         int retornoRandom;
         Jogador jogadorAux;
@@ -44,7 +57,6 @@ public class ControleJogo {
     public void fasePreparacao(Jogador jogador) {
         double territorioEscolhido;
         int exercitoEscolhido;
-        boolean escolheuTerritorioCerto = true;
         char adicionarExercito = 'S';
 
         this.inicioFasePreparacao(jogador);
@@ -53,7 +65,7 @@ public class ControleJogo {
             System.out.println("Deseja escolher um território e adicionar exército a ele?\n(S) Sim\n(N) Não");
             adicionarExercito = leitura.next().charAt(0);
 
-            while ((escolheuTerritorioCerto) && (adicionarExercito == 'S')) {
+            while (adicionarExercito == 'S') {
                 System.out.println("Digite a coordenada i,j(onde i = linha e j = coluna) do território que deseja fortificar: (Por exemplo, para escolher o Alasca digite 1,1, Otawa 2,3)");
                 territorioEscolhido = leitura.nextDouble();
 
@@ -62,12 +74,13 @@ public class ControleJogo {
                     exercitoEscolhido = leitura.nextInt();
 
                     controleExercito.fortificaExercito(jogador, territorioEscolhido, exercitoEscolhido);
-                    escolheuTerritorioCerto = true;
+                    adicionarExercito = 'S';
                 } else {
-                    System.out.println("Território inválido escolhido (Coordenadas incorretas informadas ou territorio não pertence a você.)! Digite novamente!\n");
+                    System.out.println("Território inválido escolhido (Coordenadas incorretas informadas ou territorio não pertence a você.)!\n");
                     System.out.println("Tecle enter para continuar...");
                     leitura.nextLine();
-                    escolheuTerritorioCerto = false;
+                    leitura.nextLine();
+                    adicionarExercito = 'N';
                 }
                 controleJogador.listaTerritoriosJogador(jogador);
 

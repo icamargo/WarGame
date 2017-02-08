@@ -59,23 +59,13 @@ public class WarGame {
         ControleJogo controleJogo = new ControleJogo();
         ControleJogador controleJogador = new ControleJogador();
         InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
-        Scanner leitura = new Scanner(System.in);
         
         interfacePrincipal.titulo();
         controleJogador.inicializaJogadores();
         controleJogo.inicializacaoJogo();
         controleJogo.distribuiTerritorios();
         
-        System.out.println("Ok jogadores, vamos começar o jogo!\nGanha o jogo quem conquistar totalmente dois continentes quaisquer.\nVamos lá!");
-        System.out.println("Tecle enter para iniciar o jogo...");
-        leitura.nextLine();
-        
-        System.out.println(jogador1.getNome()+ ", sua vez de jogar. Tecle enter para iniciar a jogada...");
-        leitura.nextLine();
-        controleJogo.fasePreparacao(jogador1);
-        System.out.println("\n"+jogador2.getNome()+ ", sua vez de jogar. Tecle enter para iniciar a jogada...");
-        leitura.nextLine();
-        controleJogo.fasePreparacao(jogador2);
+        controleJogo.faseInicializacao();
     }
     
 }
