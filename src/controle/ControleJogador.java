@@ -44,7 +44,6 @@ public class ControleJogador {
         leitura.nextLine();
         leitura.nextLine();
     }
-        
     
     public int comparaQtdTerritorios(){
         int diferenca = Math.abs(jogador2.getTerritorios().size() - jogador1.getTerritorios().size());
@@ -95,7 +94,7 @@ public class ControleJogador {
         
         System.out.println(jogador.getNome()+", você possui os seguintes territórios: \n");
         for (Territorio territorio : territoriosJogador){
-            System.out.println(territorio.getNome()+", que posui " + territorio.getExercitosTerrestre().size()+" exércitos terrestre e "+ territorio.getExercitosAereo().size() + " exércitos aéreo.");
+            System.out.println(territorio.getNome()+", que possui " + territorio.getExercitosTerrestre().size()+" exércitos terrestre e "+ territorio.getExercitosAereo().size() + " exércitos aéreo.");
         }
         System.out.println();
     }
@@ -125,6 +124,23 @@ public class ControleJogador {
             return false;
         }
     }
-
     
+    public void listaTerritoriosAdversario(Jogador jogador){
+        Jogador adversario = null;
+        List<Territorio> territoriosAdversario = null;
+        
+        if(jogador.getId() == 1){//adversário é o jogador2
+            adversario = jogador2;
+        }
+        else{//adversário é o jogador1
+            adversario = jogador1;
+        }
+        territoriosAdversario = adversario.getTerritorios();
+        
+        System.out.println("Seu adversário, "+adversario.getNome()+", possui os seguintes territórios: \n");
+        for (Territorio territorio : territoriosAdversario){
+            System.out.println(territorio.getNome()+", que possui " + territorio.getExercitosTerrestre().size()+" exércitos terrestre e "+ territorio.getExercitosAereo().size() + " exércitos aéreo.");
+        }
+        System.out.println();
+    }
 }

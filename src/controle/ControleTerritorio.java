@@ -140,5 +140,85 @@ public class ControleTerritorio {
         todosTerritorios.add(japao);
         todosTerritorios.add(novaGuine);
     }
+    
+    public boolean validaTerritorio(double coordTerritorio, int tipoCombate) {
+        boolean aceito = false;
+
+        for (Territorio territorio : todosTerritorios) {
+            if (territorio.getCoordenada() == coordTerritorio) {
+                switch (tipoCombate) {//(1) Terrestre (2)Aéreo
+                    case 1:
+                        if (territorio.getExercitosTerrestre().size() > 1) {
+                            aceito = true;
+                        } else {
+                            aceito = false;
+                        }
+                        break;
+                    case 2:
+                        if (territorio.getExercitosAereo().size() > 1) {
+                            aceito = true;
+                        } else {
+                            aceito = false;
+                        }
+                        break;
+                }
+            }
+        }
+        return aceito;
+    }
+    
+    public boolean validaAtaque (double territorioAtacante, double territorioAtacado){
+        boolean aceitaAtaque;
+        Territorio territorioAtaque = this.buscarTerritorio(territorioAtacante);
+        Territorio territorioDefesa = this.buscarTerritorio(territorioAtacado);
+        
+        
+        if(this.validaFronteira(territorioAtacante, territorioAtacado)){
+            if(territorioAtaque.getCor() != territorioDefesa.getCor()){
+                aceitaAtaque = true;
+            }
+            else{
+                System.out.println("Territórios informados pertencem ao mesmo jogador!");
+                aceitaAtaque = false;//territorios pertencem ao mesmo jogador
+            }
+        }
+        else{
+            System.out.println("Territórios informados não fazem fronteira!");
+            aceitaAtaque = false;//territorios nao fazem fronteira
+        }
+        return aceitaAtaque;
+    }
+    
+    private boolean validaFronteira(double territorioAtacante, double territorioAtacado){
+        Territorio territorioAtaque = this.buscarTerritorio(territorioAtacante);
+        
+        List<Territorio> fronteirasTerritorioAtacante = territorioAtaque.getFronteiras();
+        boolean fronteiraValida = false;
+        
+        for(Territorio territorio : fronteirasTerritorioAtacante){
+            if(territorio.getCoordenada() == territorioAtacado){
+                fronteiraValida = true;
+                break;
+            }
+            else{
+                fronteiraValida = false;
+            }
+        }
+        return fronteiraValida;
+    }
+    
+    private Territorio buscarTerritorio(double coordTerritorio){
+        Territorio territorioAux = null;
+        
+        for(Territorio territorio : todosTerritorios){
+            if(territorio.getCoordenada() == coordTerritorio){
+                territorioAux = territorio;
+            }
+        }
+        return territorioAux;
+    }
+    
+    
+        
 
 }

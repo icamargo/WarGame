@@ -66,6 +66,9 @@ public class WarGame {
         controleJogo.distribuiTerritorios();
         
         controleJogo.faseInicializacao();
+        
+        controleJogo.faseCombate(jogador1);
+        controleJogo.faseCombate(jogador2);
     }
     
 }
