@@ -143,4 +143,17 @@ public class ControleJogador {
         }
         System.out.println();
     }
+    
+    public void atualizaTerritorioConquistado(Jogador jogadorAtacante, Territorio territorioConquistado){
+        territorioConquistado.setCor(jogadorAtacante.getCor());
+        
+        if(jogadorAtacante.getId() == 1){
+            jogador2.getTerritorios().remove(territorioConquistado);
+            jogador1.getTerritorios().add(territorioConquistado);
+        }
+        else{
+            jogador1.getTerritorios().remove(territorioConquistado);
+            jogador2.getTerritorios().add(territorioConquistado);
+        }
+    }
 }

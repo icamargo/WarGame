@@ -74,5 +74,27 @@ public class ControleExercito {
         jogadorAux.setExercitosTerrestreDisponiveis((int)Math.floor((jogadorAux.getTerritorios().size())/2));
         jogadorAux.setExercitosAereoDisponiveis((int)Math.floor((jogadorAux.getTerritorios().size())/3));
     }
+    
+    public int retornaQtdExercitoDefesa(String tipoExercito, Territorio territorioDefesa) {
+        int qtdExercitoDefesa = 1;
+        int diferenca = 0, qtdExercitoTerritorio = 0;
+
+        switch (tipoExercito) {
+            case "Terrestre":
+                qtdExercitoTerritorio = territorioDefesa.getExercitosTerrestre().size();
+                break;
+            case "Aereo":
+                qtdExercitoTerritorio = territorioDefesa.getExercitosAereo().size();
+                break;
+        }
+        diferenca = (3 - (qtdExercitoTerritorio));
+        if (diferenca >= 0) {
+            qtdExercitoDefesa = qtdExercitoTerritorio;
+        } else {
+            qtdExercitoDefesa = (qtdExercitoTerritorio - (Math.abs(diferenca)));
+        }
+
+        return qtdExercitoDefesa;
+    }
 
 }

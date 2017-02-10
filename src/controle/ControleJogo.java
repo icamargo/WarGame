@@ -1,5 +1,8 @@
 package controle;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import modelo.Jogador;
@@ -141,7 +144,7 @@ public class ControleJogo {
                     if (controleTerritorio.validaTerritorio(territorioEscolhido, tipoCombate)) {
                         switch (tipoCombate) {
                             case 1:
-                                this.combateTerrestre(territorioEscolhido);
+                                this.combateTerrestre(territorioEscolhido, jogador);
                                 break;
                             case 2:
                                 this.combateAereo(territorioEscolhido);
@@ -171,31 +174,23 @@ public class ControleJogo {
         leitura.nextLine();
         leitura.nextLine();
         
-        interfacePrincipal.mapa();
-        
-        controleJogador.listaTerritoriosJogador(jogador);
-        System.out.println("Tecle enter para continuar...");
-        leitura.nextLine();
-        
-        controleJogador.listaTerritoriosAdversario(jogador);
-        System.out.println("Tecle enter para continuar...");
-        leitura.nextLine();
+        controleTerritorio.exibeMapaTerritorios(jogador);
     }
     
-    private void combateTerrestre(double territorioAtacante){
-        //validar se territorio escolhido pode ser usado para ataque
-        //validar territorio escolhido para ser atacado
+    private void combateTerrestre(double territorioAtacante, Jogador jogadorAtacante){
         double territorioAtacado;
+        int qtdExercitoAtaque;
         
         System.out.println("Digite a coordenada do territorio que deseja atacar: ");
         territorioAtacado = leitura.nextDouble();
         
         if(controleTerritorio.validaAtaque(territorioAtacante, territorioAtacado)){
-            System.out.println("ACEITA ATAQUE!");
+            System.out.println("Digite a quantidade de exércitos terrestre que deseja utilizar no ataque (Máximo Permitido = 3):");
+            qtdExercitoAtaque = leitura.nextInt();
+            this.ataque("Terrestre", territorioAtacante, qtdExercitoAtaque, territorioAtacado, jogadorAtacante);
         }
-        else{
-            System.out.println("NÃO ACEITA ATAQUE!");
-        }
+        
+        controleTerritorio.exibeMapaTerritorios(jogadorAtacante);
         
     }
     
@@ -204,4 +199,105 @@ public class ControleJogo {
         //validar territorio escolhido para ser atacado
         System.out.println("COMBATE AEREO!!");
     }
+    
+    private void ataque(String tipoAtaque, double territorioAtacante, int qtdExercitoAtaque, double territorioAtacado, Jogador jogadorAtacante){
+        Territorio territorioAtaque = controleTerritorio.buscarTerritorio(territorioAtacante);
+        boolean qtdAtaqueAceita = false;
+        
+        switch (tipoAtaque) {
+            case "Terrestre":
+                do {
+                    if (qtdExercitoAtaque <= 3) {
+                        if ((qtdExercitoAtaque) <= ((territorioAtaque.getExercitosTerrestre().size())-1)) {//-1 porque fica um exercito guardando o territorio
+                            this.realizaAtaque("Terrestre", territorioAtaque, qtdExercitoAtaque, territorioAtacado, jogadorAtacante);
+                            qtdAtaqueAceita = true;
+                        } else {
+                            System.out.println("Quantidade digitada inválida! Este territorio possui " + ((territorioAtaque.getExercitosTerrestre().size())-1) + " exércitos terrestres que podem ser usados para atacar!");
+                            qtdExercitoAtaque = leitura.nextInt();
+                            qtdAtaqueAceita = false;
+                        }
+                    } else {
+                        System.out.println("Quantidade digitada inválida (Máximo Permitido = 3)!\nDigite novamente:");
+                        qtdExercitoAtaque = leitura.nextInt();
+                        qtdAtaqueAceita = false;
+                    }
+
+                } while (!(qtdAtaqueAceita));
+                break;
+            case "Aereo":
+                break;
+        }
+    }
+    
+    private void realizaAtaque(String tipoAtaque, Territorio territorioAtacante, int qtdExercitoAtaque, double territorioAtacado, Jogador jogadorAtacante){
+        Territorio territorioDefesa = controleTerritorio.buscarTerritorio(territorioAtacado);
+        List<Integer> resultadoAtaque = new ArrayList<Integer>();
+        List<Integer> resultadoDefesa = new ArrayList<Integer>();
+        int qtdComparacoes=0;
+        
+        for(int i = 1; i<=qtdExercitoAtaque; i++){
+            switch(tipoAtaque){
+                case "Terrestre":
+                    resultadoAtaque.add(territorioAtacante.getExercitosTerrestre().get((i-1)).combater());
+                    break;
+                case "Aereo":
+                    break;
+            }
+        }
+        switch(tipoAtaque){
+            case "Terrestre":
+                for(int i=1; i<=controleExercito.retornaQtdExercitoDefesa("Terrestre", territorioDefesa); i++){
+                    resultadoDefesa.add(territorioDefesa.getExercitosTerrestre().get((i-1)).combater());
+                }
+                break;
+            case "Aereo":
+                break;
+        }
+        resultadoAtaque = this.ordenaListaResultado(resultadoAtaque);
+        resultadoDefesa = this.ordenaListaResultado(resultadoDefesa);
+        
+        qtdComparacoes = Math.min(resultadoAtaque.size(), resultadoDefesa.size());
+        
+        for (int i = 0; i < qtdComparacoes; i++) {
+            if (resultadoAtaque.get(i) > resultadoDefesa.get(i)) {
+                //defensor perde um exercito
+                switch(tipoAtaque){
+                    case "Terrestre":
+                        territorioDefesa.getExercitosTerrestre().remove(0);
+                        break;
+                    case "Aereo":
+                        break;
+                }
+            } else {
+                //atacante perde um exercito
+                switch(tipoAtaque){
+                    case "Terrestre":
+                        territorioAtacante.getExercitosTerrestre().remove(0);
+                        break;
+                    case "Aereo":
+                        break;
+                }
+                
+            }
+        }
+        
+        switch(tipoAtaque){
+            case "Terrestre":
+                if(territorioDefesa.getExercitosTerrestre().isEmpty()){
+                    controleJogador.atualizaTerritorioConquistado(jogadorAtacante, territorioDefesa);
+                }
+                break;
+            case "Aereo":
+                break;
+        }
+        
+    }
+    
+    private List ordenaListaResultado(List listaResultados){//ordena em ordem descrescente
+        Collections.sort(listaResultados);
+        Collections.reverse(listaResultados);
+        return listaResultados;
+    }
+    
+    
 }

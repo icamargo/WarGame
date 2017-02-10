@@ -35,7 +35,10 @@ import static wargame.WarGame.vancouver;
 import static wargame.WarGame.vladivostok;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import modelo.Jogador;
 import modelo.Territorio;
+import visao.InterfacePrincipal;
 import static wargame.WarGame.todosTerritorios;
 
 /**
@@ -207,18 +210,31 @@ public class ControleTerritorio {
         return fronteiraValida;
     }
     
-    private Territorio buscarTerritorio(double coordTerritorio){
+    public Territorio buscarTerritorio(double coordTerritorio){
         Territorio territorioAux = null;
         
         for(Territorio territorio : todosTerritorios){
             if(territorio.getCoordenada() == coordTerritorio){
                 territorioAux = territorio;
+                break;
             }
         }
         return territorioAux;
     }
     
-    
+    public void exibeMapaTerritorios(Jogador jogador){
+        InterfacePrincipal interfacePrincipal = new InterfacePrincipal();
+        ControleJogador controleJogador = new ControleJogador();
+        Scanner leitura = new Scanner(System.in);
         
-
+        interfacePrincipal.mapa();
+        
+        controleJogador.listaTerritoriosJogador(jogador);
+        System.out.println("Tecle enter para continuar...");
+        leitura.nextLine();
+        
+        controleJogador.listaTerritoriosAdversario(jogador);
+        System.out.println("Tecle enter para continuar...");
+        leitura.nextLine();
+    }
 }

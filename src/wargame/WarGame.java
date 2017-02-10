@@ -1,6 +1,5 @@
 package wargame;
 
-import teste.ClasseTeste;
 import controle.ControleJogador;
 import controle.ControleJogo;
 import java.util.ArrayList;
