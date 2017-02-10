@@ -170,7 +170,7 @@ public class ControleJogo {
     }
     
     private void inicioFaseCombate(Jogador jogador){
-        System.out.println(jogador.getNome()+", essa é a fase de combate, nela você poderá atacar territórios inimigos para tentar conquistá-los.\nTecle enter para continuar...");
+        System.out.println("\n"+jogador.getNome()+", essa é a fase de combate, nela você poderá atacar territórios inimigos para tentar conquistá-los.\nTecle enter para continuar...");
         leitura.nextLine();
         leitura.nextLine();
         
@@ -264,6 +264,9 @@ public class ControleJogo {
                 switch(tipoAtaque){
                     case "Terrestre":
                         territorioDefesa.getExercitosTerrestre().remove(0);
+                        System.out.println("Você derrotou um exército do território inimigo:\nResultado do combate: Seu Exército "+resultadoAtaque.get(i) + " X "+resultadoDefesa.get(i)+" Exército Adversário\nTecle enter para continuar...");
+                        leitura.nextLine();
+                        leitura.nextLine();
                         break;
                     case "Aereo":
                         break;
@@ -273,6 +276,9 @@ public class ControleJogo {
                 switch(tipoAtaque){
                     case "Terrestre":
                         territorioAtacante.getExercitosTerrestre().remove(0);
+                        System.out.println("Você perdeu um exército do seu território:\nResultado do combate: Seu Exército "+resultadoAtaque.get(i) + " X "+resultadoDefesa.get(i)+" Exército Adversário\nTecle enter para continuar...");
+                        leitura.nextLine();
+                        leitura.nextLine();
                         break;
                     case "Aereo":
                         break;
