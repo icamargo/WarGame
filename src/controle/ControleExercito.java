@@ -14,20 +14,19 @@ import modelo.Territorio;
 public class ControleExercito {
     private Scanner leitura = new Scanner(System.in);
 
-    public void fortificaExercito(Jogador jogador, double coordTerritorio, int exercitoFortificar){
+    public void fortificaExercito(Jogador jogador, double coordTerritorio, int exercitoFortificar) {
         int maximoDisponivel, qtdFortificar;
         boolean qtdAceita = false;
-        String tipoExercito ;
+        String tipoExercito;
 
-        if(exercitoFortificar == 1){
+        if (exercitoFortificar == 1) {
             maximoDisponivel = jogador.getExercitosTerrestreDisponiveis();
             tipoExercito = "terrestre";
-        }
-        else {
+        } else {
             maximoDisponivel = jogador.getExercitosAereoDisponiveis();
             tipoExercito = "aéreo";
         }
-        
+
         while (!(qtdAceita)) {
             System.out.println("Digite a quantidade de exércitos " + tipoExercito + " que deseja adicionar a esse território (Máximo: " + maximoDisponivel + "):");
             qtdFortificar = leitura.nextInt();
@@ -38,8 +37,8 @@ public class ControleExercito {
                 System.out.println("Quantidade digitada inválida, digite novamente.");
                 qtdAceita = false;
             }
-}}
-    
+        }
+    }
     
     private void aumentaExercitos(Jogador jogador, double coordTerritorio, int qtdFortificar, String tipoExercito) {
         List<Territorio> territoriosJogador = jogador.getTerritorios();
@@ -95,6 +94,30 @@ public class ControleExercito {
         }
 
         return qtdExercitoDefesa;
+    }
+    
+    public void moverExercitoTerritorioConsquistado(String tipoAtaque, Territorio territorioAtacante, Territorio territorioAtacado, int qtdExercitoAtaque) {
+        int qtdExercitoMover=0;
+        
+        System.out.println("Você pode mover no máximo " + qtdExercitoAtaque + " exércitos para o novo território.\nDigite a quantidade que deseja mover:");
+        qtdExercitoMover = leitura.nextInt();
+        
+        while(!(qtdExercitoMover <= qtdExercitoAtaque)){
+            System.out.println("Quantidade inválida digitada! Digite novamente.");
+            qtdExercitoMover = leitura.nextInt();
+        }
+        for(int i=0; i<qtdExercitoMover; i++){
+            switch(tipoAtaque){
+                case "Terrestre":
+                    territorioAtacado.getExercitosTerrestre().add(new Terrestre());
+                    territorioAtacante.getExercitosTerrestre().remove(0);
+                    break;
+                case "Aereo":
+                    break;
+            }
+            
+        }
+        
     }
 
 }

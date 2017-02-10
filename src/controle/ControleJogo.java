@@ -291,6 +291,7 @@ public class ControleJogo {
             case "Terrestre":
                 if(territorioDefesa.getExercitosTerrestre().isEmpty()){
                     controleJogador.atualizaTerritorioConquistado(jogadorAtacante, territorioDefesa);
+                    controleExercito.moverExercitoTerritorioConsquistado(tipoAtaque, territorioAtacante, territorioDefesa, qtdExercitoAtaque);
                 }
                 break;
             case "Aereo":
@@ -304,6 +305,4 @@ public class ControleJogo {
         Collections.reverse(listaResultados);
         return listaResultados;
     }
-    
-    
 }

@@ -155,5 +155,6 @@ public class ControleJogador {
             jogador1.getTerritorios().remove(territorioConquistado);
             jogador2.getTerritorios().add(territorioConquistado);
         }
+        System.out.println("Você conquistou o seguinte território: "+territorioConquistado.getNome());
     }
 }
