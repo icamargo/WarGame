@@ -11,6 +11,12 @@ import visao.InterfacePrincipal;
 import static wargame.WarGame.todosTerritorios;
 import static wargame.WarGame.jogador1;
 import static wargame.WarGame.jogador2;
+import static wargame.WarGame.territoriosAfrica;
+import static wargame.WarGame.territoriosAmericaDoNorte;
+import static wargame.WarGame.territoriosAmericaDoSul;
+import static wargame.WarGame.territoriosAsia;
+import static wargame.WarGame.territoriosEuropa;
+import static wargame.WarGame.territoriosOceania;
 /**
  *
  * @author Igor
@@ -25,6 +31,7 @@ public class ControleJogo {
 
     public void inicializacaoJogo() {
         controleTerritorio.defineFronteiras();
+        controleTerritorio.criaContinentes();
         controleTerritorio.criaListaTerritorios();
     }
     
@@ -163,7 +170,7 @@ public class ControleJogo {
                 }
 
             } while (!(territorioAceito));
-
+            
             System.out.println("Deseja realizar um novo ataque?\n(S) Sim.\n(N) Não.");
             atacarNovamente = leitura.next().charAt(0);
         } while (atacarNovamente == 'S');
@@ -291,6 +298,7 @@ public class ControleJogo {
             case "Terrestre":
                 if(territorioDefesa.getExercitosTerrestre().isEmpty()){
                     controleJogador.atualizaTerritorioConquistado(jogadorAtacante, territorioDefesa);
+                    this.verificaVencedor();
                     controleExercito.moverExercitoTerritorioConsquistado(tipoAtaque, territorioAtacante, territorioDefesa, qtdExercitoAtaque);
                 }
                 break;
@@ -304,5 +312,129 @@ public class ControleJogo {
         Collections.sort(listaResultados);
         Collections.reverse(listaResultados);
         return listaResultados;
+    }
+    
+    public boolean verificaVencedor(){
+        boolean jogoAcabou = false;
+        List<Territorio> listaAuxJogador1 = new ArrayList<Territorio>(); 
+        List<Territorio> listaAuxJogador2 = new ArrayList<Territorio>();
+        
+        for (Territorio territorio : territoriosAmericaDoNorte) {
+            //controleTerritorio.verificaOcupacaoContinente(jogador1, territorio, territoriosAmericaDoNorte);
+            if (jogador1.getTerritorios().contains(territorio)) {
+                listaAuxJogador1.add(territorio);
+            }
+            if (listaAuxJogador1.size() == territoriosAmericaDoNorte.size()) {
+                jogador1.setPontuacao(jogador1.getPontuacao() + 1);
+            }
+            //controleTerritorio.verificaOcupacaoContinente(jogador2, territorio, territoriosAmericaDoNorte);
+            if (jogador2.getTerritorios().contains(territorio)) {
+                listaAuxJogador2.add(territorio);
+            }
+            if (listaAuxJogador2.size() == territoriosAmericaDoNorte.size()) {
+                jogador2.setPontuacao(jogador2.getPontuacao() + 1);
+            }
+        }
+        listaAuxJogador1 = new ArrayList<Territorio>();
+        listaAuxJogador2 = new ArrayList<Territorio>();
+        for(Territorio territorio : territoriosAmericaDoSul){
+            //controleTerritorio.verificaOcupacaoContinente(jogador1, territorio, territoriosAmericaDoSul);
+            if (jogador1.getTerritorios().contains(territorio)) {
+                listaAuxJogador1.add(territorio);
+            }
+            if (listaAuxJogador1.size() == territoriosAmericaDoSul.size()) {
+                jogador1.setPontuacao(jogador1.getPontuacao() + 1);
+            }
+            //controleTerritorio.verificaOcupacaoContinente(jogador2, territorio, territoriosAmericaDoSul);
+            if (jogador2.getTerritorios().contains(territorio)) {
+                listaAuxJogador2.add(territorio);
+            }
+            if (listaAuxJogador2.size() == territoriosAmericaDoSul.size()) {
+                jogador2.setPontuacao(jogador2.getPontuacao() + 1);
+            }
+        }
+        listaAuxJogador1 = new ArrayList<Territorio>();
+        listaAuxJogador2 = new ArrayList<Territorio>();
+        for(Territorio territorio : territoriosEuropa){
+            //controleTerritorio.verificaOcupacaoContinente(jogador1, territorio, territoriosEuropa);
+            if (jogador1.getTerritorios().contains(territorio)) {
+                listaAuxJogador1.add(territorio);
+            }
+            if (listaAuxJogador1.size() == territoriosEuropa.size()) {
+                jogador1.setPontuacao(jogador1.getPontuacao() + 1);
+            }
+            //controleTerritorio.verificaOcupacaoContinente(jogador2, territorio, territoriosEuropa);
+            if (jogador2.getTerritorios().contains(territorio)) {
+                listaAuxJogador2.add(territorio);
+            }
+            if (listaAuxJogador2.size() == territoriosEuropa.size()) {
+                jogador2.setPontuacao(jogador2.getPontuacao() + 1);
+            }
+        }
+        listaAuxJogador1 = new ArrayList<Territorio>();
+        listaAuxJogador2 = new ArrayList<Territorio>();
+        for(Territorio territorio : territoriosAfrica){
+            //controleTerritorio.verificaOcupacaoContinente(jogador1, territorio, territoriosAfrica);
+            if (jogador1.getTerritorios().contains(territorio)) {
+                listaAuxJogador1.add(territorio);
+            }
+            if (listaAuxJogador1.size() == territoriosAfrica.size()) {
+                jogador1.setPontuacao(jogador1.getPontuacao() + 1);
+            }
+            //controleTerritorio.verificaOcupacaoContinente(jogador2, territorio, territoriosAfrica);
+            if (jogador2.getTerritorios().contains(territorio)) {
+                listaAuxJogador2.add(territorio);
+            }
+            if (listaAuxJogador2.size() == territoriosAfrica.size()) {
+                jogador2.setPontuacao(jogador2.getPontuacao() + 1);
+            }
+        }
+        listaAuxJogador1 = new ArrayList<Territorio>();
+        listaAuxJogador2 = new ArrayList<Territorio>();
+        for(Territorio territorio : territoriosAsia){
+            //controleTerritorio.verificaOcupacaoContinente(jogador1, territorio, territoriosAsia);
+            if (jogador1.getTerritorios().contains(territorio)) {
+                listaAuxJogador1.add(territorio);
+            }
+            if (listaAuxJogador1.size() == territoriosAsia.size()) {
+                jogador1.setPontuacao(jogador1.getPontuacao() + 1);
+            }
+            //controleTerritorio.verificaOcupacaoContinente(jogador2, territorio, territoriosAsia);
+            if (jogador2.getTerritorios().contains(territorio)) {
+                listaAuxJogador2.add(territorio);
+            }
+            if (listaAuxJogador2.size() == territoriosAsia.size()) {
+                jogador2.setPontuacao(jogador2.getPontuacao() + 1);
+            }
+        }
+        listaAuxJogador1 = new ArrayList<Territorio>();
+        listaAuxJogador2 = new ArrayList<Territorio>();
+        for(Territorio territorio : territoriosOceania){
+            //controleTerritorio.verificaOcupacaoContinente(jogador1, territorio, territoriosOceania);
+            if (jogador1.getTerritorios().contains(territorio)) {
+                listaAuxJogador1.add(territorio);
+            }
+            if (listaAuxJogador1.size() == territoriosOceania.size()) {
+                jogador1.setPontuacao(jogador1.getPontuacao() + 1);
+            }
+            //controleTerritorio.verificaOcupacaoContinente(jogador2, territorio, territoriosOceania);
+            if (jogador2.getTerritorios().contains(territorio)) {
+                listaAuxJogador2.add(territorio);
+            }
+            if (listaAuxJogador2.size() == territoriosOceania.size()) {
+                jogador2.setPontuacao(jogador2.getPontuacao() + 1);
+            }
+        }
+        if(jogador1.getPontuacao() == 2){
+            System.out.println("Parabéns "+jogador1.getNome()+" você venceu o jogo!");
+            jogoAcabou = true;
+            System.exit(0);
+        }
+        else if(jogador2.getPontuacao() == 2){
+            System.out.println("Parabéns "+jogador2.getNome()+" você venceu o jogo!");
+            jogoAcabou = true;
+            System.exit(0);
+        }
+        return jogoAcabou;
     }
 }

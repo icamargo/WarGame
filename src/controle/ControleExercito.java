@@ -70,8 +70,8 @@ public class ControleExercito {
     }
     
     public void atualizaExercitosDisponiveis(Jogador jogadorAux){
-        jogadorAux.setExercitosTerrestreDisponiveis((int)Math.floor((jogadorAux.getTerritorios().size())/2));
-        jogadorAux.setExercitosAereoDisponiveis((int)Math.floor((jogadorAux.getTerritorios().size())/3));
+        jogadorAux.setExercitosTerrestreDisponiveis(jogadorAux.getExercitosTerrestreDisponiveis() + ((int)Math.floor((jogadorAux.getTerritorios().size())/2)));
+        jogadorAux.setExercitosAereoDisponiveis(jogadorAux.getExercitosAereoDisponiveis() + ((int)Math.floor((jogadorAux.getTerritorios().size())/3)));
     }
     
     public int retornaQtdExercitoDefesa(String tipoExercito, Territorio territorioDefesa) {

@@ -13,6 +13,7 @@ public class Jogador {
     private int exercitosTerrestreDisponiveis;
     private int exercitosAereoDisponiveis;
     private Cor cor;
+    private int pontuacao;
     
     private List territorios;
     
@@ -67,5 +68,13 @@ public class Jogador {
 
     public void setExercitosAereoDisponiveis(int exercitosAereoDisponiveis) {
         this.exercitosAereoDisponiveis = exercitosAereoDisponiveis;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
     }
 }

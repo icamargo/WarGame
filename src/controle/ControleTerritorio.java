@@ -39,6 +39,12 @@ import java.util.Scanner;
 import modelo.Jogador;
 import modelo.Territorio;
 import visao.InterfacePrincipal;
+import static wargame.WarGame.territoriosAfrica;
+import static wargame.WarGame.territoriosAmericaDoNorte;
+import static wargame.WarGame.territoriosAmericaDoSul;
+import static wargame.WarGame.territoriosAsia;
+import static wargame.WarGame.territoriosEuropa;
+import static wargame.WarGame.territoriosOceania;
 import static wargame.WarGame.todosTerritorios;
 
 /**
@@ -236,5 +242,57 @@ public class ControleTerritorio {
         controleJogador.listaTerritoriosAdversario(jogador);
         System.out.println("Tecle enter para continuar...");
         leitura.nextLine();
+    }
+    
+    public void criaContinentes(){
+        territoriosAmericaDoNorte.add(alasca);
+        territoriosAmericaDoNorte.add(vancouver);
+        territoriosAmericaDoNorte.add(california);
+        territoriosAmericaDoNorte.add(mexico);
+        territoriosAmericaDoNorte.add(groelandia);
+        territoriosAmericaDoNorte.add(otawa);
+        territoriosAmericaDoNorte.add(novaYork);
+        
+        territoriosAmericaDoSul.add(chile);
+        territoriosAmericaDoSul.add(argentina);
+        territoriosAmericaDoSul.add(colombia);
+        territoriosAmericaDoSul.add(brasil);
+        
+        territoriosEuropa.add(inglaterra);
+        territoriosEuropa.add(italia);
+        territoriosEuropa.add(alemanha);
+        territoriosEuropa.add(suecia);
+        territoriosEuropa.add(moscou);
+        
+        territoriosAfrica.add(nigeria);
+        territoriosAfrica.add(congo);
+        territoriosAfrica.add(africaDoSul);
+        territoriosAfrica.add(egito);
+        territoriosAfrica.add(sudao);
+        territoriosAfrica.add(madagascar);
+        
+        territoriosAsia.add(orienteMedio);
+        territoriosAsia.add(omsk);
+        territoriosAsia.add(india);
+        territoriosAsia.add(vladivostok);
+        territoriosAsia.add(siberia);
+        territoriosAsia.add(china);
+        territoriosAsia.add(japao);
+        
+        territoriosOceania.add(sumatra);
+        territoriosOceania.add(borneu);
+        territoriosOceania.add(australia);
+        territoriosOceania.add(novaGuine);
+    }
+    
+    public void verificaOcupacaoContinente(Jogador jogador, Territorio territorio, List<Territorio> territoriosContinente) {
+        List<Territorio> listaAux = new ArrayList<Territorio>();
+
+        if (jogador.getTerritorios().contains(territorio)) {
+            listaAux.add(territorio);
+        }
+        if (listaAux.size() == territoriosContinente.size()) {
+            jogador.setPontuacao(jogador.getPontuacao() + 1);
+        }
     }
 }

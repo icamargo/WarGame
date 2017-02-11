@@ -54,6 +54,13 @@ public class WarGame {
     
     public static List<Territorio> todosTerritorios = new ArrayList<Territorio>();
     
+    public static List<Territorio> territoriosAfrica = new ArrayList<Territorio>();
+    public static List<Territorio> territoriosAmericaDoNorte = new ArrayList<Territorio>();
+    public static List<Territorio> territoriosAmericaDoSul = new ArrayList<Territorio>();
+    public static List<Territorio> territoriosAsia = new ArrayList<Territorio>();
+    public static List<Territorio> territoriosEuropa = new ArrayList<Territorio>();
+    public static List<Territorio> territoriosOceania = new ArrayList<Territorio>();
+    
     public static void main(String[] args) {
         ControleJogo controleJogo = new ControleJogo();
         ControleJogador controleJogador = new ControleJogador();
@@ -65,9 +72,13 @@ public class WarGame {
         controleJogo.distribuiTerritorios();
         
         controleJogo.faseInicializacao();
+        do {
+            controleJogo.faseCombate(jogador1);
+            controleJogo.fasePreparacao(jogador1);
+            controleJogo.faseCombate(jogador2);
+            controleJogo.fasePreparacao(jogador2);
+        } while (!(controleJogo.verificaVencedor()));
         
-        controleJogo.faseCombate(jogador1);
-        controleJogo.faseCombate(jogador2);
     }
     
 }
